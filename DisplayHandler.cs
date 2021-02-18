@@ -18,15 +18,15 @@ namespace SwitchDisplay
                 DISPLAY_DEVICE monitor = new DISPLAY_DEVICE(DisplayDeviceStateFlags.AttachedToDesktop);
 
                 var devMode = new DEVMODE();
-                EnumDisplaySettings(display.DeviceName, -1, ref devMode);
+                EnumDisplaySettings(display.MonitorString, -1, ref devMode);
 
 
-                while (EnumDisplayDevices(display.DeviceName, monitorIndex, ref monitor, 0))
+                while (EnumDisplayDevices(display.MonitorString, monitorIndex, ref monitor, 0))
                 {
                     monitorIndex++;
                     displays.Add(new DeviceInfo {
                         DeviceIndex = displayIndex,
-                        DeviceName = display.DeviceName,
+                        DeviceName = display.MonitorString,
                         DeviceString = display.DeviceString,
                         MonitorIndex = monitorIndex,
                         MonitorName = monitor.DeviceName,
